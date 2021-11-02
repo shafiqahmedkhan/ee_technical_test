@@ -3,15 +3,18 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
-public class HomePage {
+public class homePage {
 
     WebDriver driver;
 
-    public HomePage(WebDriver driver) {
+    public homePage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -39,25 +42,31 @@ public class HomePage {
         driver.findElement(price).sendKeys(cost);
     }
 
-    public void depositStatus (String status) {
+    public void depositStatus (int index) {
         Select se = new Select(driver.findElement(deposit));
-        se.selectByVisibleText(status);
+        se.selectByIndex(index);
     }
 
     public void selectDate() {
         //open date picker
-        driver.findElement(uiDatePicker).click();
+        driver.findElement(checkIn).click();
+        //wait for the date picker to be displayed
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(uiDatePicker));
         //get month year
         String monthYear = driver.findElement(datePickerMonthYear).getText();
         //split month and year text
         String month = monthYear.split(" ")[0].trim();
         String year = monthYear.split(" ")[1].trim();
         //select month year
-        while (!(month=="November" && year=="2021")) {
+        while (!(month.equals("June") && year.equals("2022"))) {
             driver.findElement(datePickerNext).click();
+            monthYear = driver.findElement(datePickerMonthYear).getText();
+            month = monthYear.split(" ")[0].trim();
+            year = monthYear.split(" ")[1].trim();
         }
         //select day
-        driver.findElement(By.xpath("//a[text()='1']"));
+        driver.findElement(By.xpath("//a[text()='1']")).click();
     }
 
     public void saveHotelBooking() {
