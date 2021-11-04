@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: RunCukesTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.827 sec <<< FAILURE!
+User is able to make a hotel booking(Hotel Booking Form)  Time elapsed: 0.264 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)" because "this.base.driver" is null
+	at pages.hotelBookingFormPage.enterFirstName(hotelBookingFormPage.java:43)
+	at pages.hotelBookingFormPage.enterBookingInformation(hotelBookingFormPage.java:100)
+	at steps.hotelBookingForm.enterAllValidInformation(hotelBookingForm.java:28)
+	at ✽.I enter all valid information(file:///Users/shafiqahmedkhan/Documents/ee_technical_test/src/test/java/features/hotelBookingForm.feature:4)
+
+User is able to delete a booking(Hotel Booking Form)  Time elapsed: 0.039 sec  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)" because "this.base.driver" is null
+	at pages.hotelBookingFormPage.enterFirstName(hotelBookingFormPage.java:43)
+	at pages.hotelBookingFormPage.enterBookingInformation(hotelBookingFormPage.java:100)
+	at steps.hotelBookingForm.enterAllValidInformation(hotelBookingForm.java:28)
+	at ✽.I enter all valid information(file:///Users/shafiqahmedkhan/Documents/ee_technical_test/src/test/java/features/hotelBookingForm.feature:4)
+
