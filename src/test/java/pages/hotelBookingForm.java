@@ -133,17 +133,11 @@ public class hotelBookingForm {
 
     public void deleteABooking() {
         bookingNo();
-        System.out.println("1");
         savedRow();
-        System.out.println("2");
         waitForSavedRow();
-        System.out.println("3");
         bookingId();
-        System.out.println("4");
         deleteBtn();
-        System.out.println("5");
         clickingDelete();
-        System.out.println("6");
         System.out.println(this.deleteBtn);
         System.out.println(deleteBtn);
     }

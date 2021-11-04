@@ -32,4 +32,23 @@ public class hotelBookingFormPage extends driver {
         hotelBookingForm hbf = new hotelBookingForm(driver);
         hbf.savedBooking();
     }
+
+    @Given("I have a hotel booking")
+    public void iHaveAHotelBooking() {
+        hotelBookingForm hbf = new hotelBookingForm(driver);
+        hbf.enterBookingInformation();
+        hbf.saveHotelBooking();
+    }
+
+    @When("I delete the hotel booking")
+    public void iDeleteTheHotelBooking() {
+        hotelBookingForm hbf = new hotelBookingForm(driver);
+        hbf.deleteABooking();
+    }
+
+    @Then("then booking cannot be seen")
+    public void thenBookingCannotBeSeen() {
+        hotelBookingForm hbf = new hotelBookingForm(driver);
+        hbf.verifyADeletedBooking();
+    }
 }

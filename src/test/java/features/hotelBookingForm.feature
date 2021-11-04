@@ -8,7 +8,8 @@ Feature: Hotel Booking Form
     And save the hotel booking
     Then the hotel booking will be saved
 
-#  Scenario: User is able to delete a hotel booking
-#    And there is a hotel booking
-#    When I delete a hotel booking
-#    Then the hotel booking will be removed
+  Scenario: User cannot delete a hotel booking
+    Given I have a hotel booking
+    When I delete the hotel booking
+    Then then booking cannot be seen
+
