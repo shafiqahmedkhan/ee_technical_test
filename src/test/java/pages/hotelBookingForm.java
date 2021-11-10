@@ -145,7 +145,7 @@ public class hotelBookingForm {
     public void verifyADeletedBooking() {
         System.out.println(this.deleteBtn);
         System.out.println(deleteBtn);
-//        Assert.assertTrue(driver.findElement(By.cssSelector(this.deleteBtn)).isDisplayed());
+//        Assert.assertTrue(hooks.findElement(By.cssSelector(this.deleteBtn)).isDisplayed());
     }
 
 }

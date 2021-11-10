@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="RunCukesTest" time="0.303" errors="2" skipped="0">
+<testsuite tests="1" failures="0" name="RunCukesTest" time="0.473" errors="1" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="17+0"/>
@@ -41,7 +41,7 @@
     <property name="java.class.path" value="/usr/local/Cellar/maven/3.8.3/libexec/boot/plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="17"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -U clean install"/>
     <property name="java.home" value="/usr/local/Cellar/openjdk/17/libexec/openjdk.jdk/Contents/Home"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -61,20 +61,86 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase classname="Hotel Booking Form" name="User is able to make a hotel booking" time="0.264">
-    <error message="Cannot invoke &quot;org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)&quot; because &quot;this.base.driver&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)&quot; because &quot;this.base.driver&quot; is null
-	at pages.hotelBookingFormPage.enterFirstName(hotelBookingFormPage.java:43)
-	at pages.hotelBookingFormPage.enterBookingInformation(hotelBookingFormPage.java:100)
-	at steps.hotelBookingForm.enterAllValidInformation(hotelBookingForm.java:28)
-	at ✽.I enter all valid information(file:///Users/shafiqahmedkhan/Documents/ee_technical_test/src/test/java/features/hotelBookingForm.feature:4)
+  <testcase classname="RunCukesTest" name="RunCukesTest" time="0.473">
+    <error message="A method annotated with Before, After, BeforeStep or AfterStep must have one of these signatures:
+ * public void before_or_after(io.cucumber.java.Scenario scenario)
+ * public void before_or_after()
+at resources.hooks.startBrowser()
+
+" type="io.cucumber.java.InvalidMethodSignatureException">io.cucumber.java.InvalidMethodSignatureException: A method annotated with Before, After, BeforeStep or AfterStep must have one of these signatures:
+ * public void before_or_after(io.cucumber.java.Scenario scenario)
+ * public void before_or_after()
+at resources.hooks.startBrowser()
+
+
+	at io.cucumber.java.InvalidMethodSignatureException$InvalidMethodSignatureExceptionBuilder.build(InvalidMethodSignatureException.java:52)
+	at io.cucumber.java.JavaHookDefinition.createInvalidSignatureException(JavaHookDefinition.java:52)
+	at io.cucumber.java.JavaHookDefinition.requireValidMethod(JavaHookDefinition.java:39)
+	at io.cucumber.java.JavaHookDefinition.&lt;init&gt;(JavaHookDefinition.java:19)
+	at io.cucumber.java.GlueAdaptor.addDefinition(GlueAdaptor.java:27)
+	at io.cucumber.java.JavaBackend.lambda$loadGlue$1(JavaBackend.java:42)
+	at io.cucumber.java.MethodScanner.scan(MethodScanner.java:67)
+	at io.cucumber.java.MethodScanner.scan(MethodScanner.java:58)
+	at io.cucumber.java.MethodScanner.scan(MethodScanner.java:33)
+	at io.cucumber.java.JavaBackend.lambda$loadGlue$2(JavaBackend.java:40)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at java.base/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at io.cucumber.java.JavaBackend.loadGlue(JavaBackend.java:40)
+	at io.cucumber.core.runner.Runner.&lt;init&gt;(Runner.java:56)
+	at io.cucumber.core.runtime.ThreadLocalRunnerSupplier.createRunner(ThreadLocalRunnerSupplier.java:47)
+	at java.base/java.lang.ThreadLocal$SuppliedThreadLocal.initialValue(ThreadLocal.java:305)
+	at java.base/java.lang.ThreadLocal.setInitialValue(ThreadLocal.java:195)
+	at java.base/java.lang.ThreadLocal.get(ThreadLocal.java:172)
+	at io.cucumber.core.runtime.ThreadLocalRunnerSupplier.get(ThreadLocalRunnerSupplier.java:40)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:35)
+	at io.cucumber.core.runtime.CucumberExecutionContext.getRunner(CucumberExecutionContext.java:114)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runAfterAllHooks(CucumberExecutionContext.java:70)
+	at io.cucumber.junit.Cucumber$RunAfterAllHooks.evaluate(Cucumber.java:283)
+	at io.cucumber.junit.Cucumber$StartTestRun.evaluate(Cucumber.java:233)
+	at io.cucumber.junit.Cucumber$FinishTestRun.evaluate(Cucumber.java:248)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
 </error>
-  </testcase>
-  <testcase classname="Hotel Booking Form" name="User is able to delete a booking" time="0.039">
-    <error message="Cannot invoke &quot;org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)&quot; because &quot;this.base.driver&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebDriver.findElement(org.openqa.selenium.By)&quot; because &quot;this.base.driver&quot; is null
-	at pages.hotelBookingFormPage.enterFirstName(hotelBookingFormPage.java:43)
-	at pages.hotelBookingFormPage.enterBookingInformation(hotelBookingFormPage.java:100)
-	at steps.hotelBookingForm.enterAllValidInformation(hotelBookingForm.java:28)
-	at ✽.I enter all valid information(file:///Users/shafiqahmedkhan/Documents/ee_technical_test/src/test/java/features/hotelBookingForm.feature:4)
-</error>
+    <system-err>&amp;#27;[32m&amp;#27;[1m┌───────────────────────────────────────────────────────────────────────────────────┐&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m Share your Cucumber Report with your team at &amp;#27;[36m&amp;#27;[1m&amp;#27;[4mhttps://reports.cucumber.io&amp;#27;[0m          &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m Activate publishing with one of the following:                                    &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m                                                                                   &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m src/test/resources/cucumber.properties:          &amp;#27;[36mcucumber.publish.enabled&amp;#27;[0m=&amp;#27;[36mtrue&amp;#27;[0m    &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m src/test/resources/junit-platform.properties:    &amp;#27;[36mcucumber.publish.enabled&amp;#27;[0m=&amp;#27;[36mtrue&amp;#27;[0m    &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m Environment variable:                            &amp;#27;[36mCUCUMBER_PUBLISH_ENABLED&amp;#27;[0m=&amp;#27;[36mtrue&amp;#27;[0m    &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m JUnit:                                           &amp;#27;[36m@CucumberOptions&amp;#27;[0m(publish = &amp;#27;[36mtrue&amp;#27;[0m) &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m                                                                                   &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m More information at &amp;#27;[36mhttps://cucumber.io/docs/cucumber/environment-variables/&amp;#27;[0m      &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m                                                                                   &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m Disable this message with one of the following:                                   &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m                                                                                   &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m src/test/resources/cucumber.properties:          &amp;#27;[36mcucumber.publish.quiet&amp;#27;[0m=&amp;#27;[36mtrue&amp;#27;[0m      &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m src/test/resources/junit-platform.properties:    &amp;#27;[36mcucumber.publish.quiet&amp;#27;[0m=&amp;#27;[36mtrue&amp;#27;[0m      &amp;#27;[32m&amp;#27;[1m│&amp;#27;[0m
+&amp;#27;[32m&amp;#27;[1m└───────────────────────────────────────────────────────────────────────────────────┘&amp;#27;[0m
+</system-err>
   </testcase>
 </testsuite>

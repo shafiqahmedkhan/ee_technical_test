@@ -1,17 +1,35 @@
 package steps;
 
+
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import pages.hotelBookingForm;
-import resources.driver;
 
-public class hotelBookingFormPage extends driver {
+public class hotelBookingFormPage {
+
+    public WebDriver driver;
+
+    @Before
+    public void startBrowser() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+    }
+
+    @After
+    public void closeBrowser() {
+        driver.close();
+        driver.quit();
+    }
 
     @Given("I navigate to the hotel booking form page")
     public void iNavigateToTheHotelBookingFormPage() {
-        driver = initlilizeDriver();
         driver.get("http://hotel-test.equalexperts.io/");
     }
 
