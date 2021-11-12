@@ -2,6 +2,7 @@ package pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -85,14 +86,14 @@ public class hotelBookingForm {
         driver.findElement(save).click();
     }
 
-    public void savedBooking() {
-        bookingNo();
-        savedRow();
-        waitForSavedRow();
-        bookingId();
-        deleteBtn();
-        Assert.assertTrue(driver.findElement(By.cssSelector(this.deleteBtn)).isDisplayed());
-    }
+//    public void savedBooking() {
+//        bookingNo();
+//        savedRow();
+//        waitForSavedRow();
+//        bookingId();
+//        deleteBtn();
+//        Assert.assertTrue(driver.findElement(By.cssSelector(this.deleteBtn)).isDisplayed());
+//    }
 
     public void enterBookingInformation() {
         enterFirstName("first");
@@ -105,47 +106,75 @@ public class hotelBookingForm {
         selectDate("15", "June", "2022");
     }
 
-    public void bookingNo() {
-        List<WebElement> bookings = driver.findElements(bookingRow);
-        this.bookingNo = bookings.size();
+    public int totalNoOfRows() {
+        List<WebElement> rows = driver.findElements(bookingRow);
+        int totalNoOfRows = rows.size();
+        return totalNoOfRows;
     }
 
-    public void savedRow() {
-        this.savedRow = String.format("div[class='row']:nth-child(%s)", this.bookingNo);
+    public int noOfSavedBookings() {
+        List<WebElement> rows = driver.findElements(bookingRow);
+        int noOfSavedBookings = (rows.size()) - 2;
+        return noOfSavedBookings;
     }
 
-    public void waitForSavedRow() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(this.savedRow)));
+    public void deleteLastBooking() {
+        noOfSavedBookings();
+        String rowLocator = String.format("div[class='row']:nth-child(%s)", noOfSavedBookings());
+        String bookingId = driver.findElement(By.cssSelector(rowLocator)).getAttribute("id");
+        String deleteBtn = String.format("input[onclick='deleteBooking(%s)']", bookingId);
+        driver.findElement(By.cssSelector(deleteBtn)).click();
     }
 
-    public void bookingId() {
-        this.bookingId = driver.findElement(By.cssSelector(this.savedRow)).getAttribute("id");
-    }
 
-    public void deleteBtn() {
-        this.deleteBtn = String.format("input[onclick='deleteBooking(%s)']", this.bookingId);
-    }
 
-    public void clickingDelete() {
-        driver.findElement(By.cssSelector(this.deleteBtn)).click();
-    }
 
-    public void deleteABooking() {
-        bookingNo();
-        savedRow();
-        waitForSavedRow();
-        bookingId();
-        deleteBtn();
-        clickingDelete();
-        System.out.println(this.deleteBtn);
-        System.out.println(deleteBtn);
-    }
 
-    public void verifyADeletedBooking() {
-        System.out.println(this.deleteBtn);
-        System.out.println(deleteBtn);
-//        Assert.assertTrue(hooks.findElement(By.cssSelector(this.deleteBtn)).isDisplayed());
+//    public String rowLocator(int bookingNo) {
+//        String rowLocator = String.format("div[class='row']:nth-child(%s)", bookingNo);
+//        return rowLocator;
+//    }
+
+//    public void waitForSavedRow() {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(r)));
+//    }
+
+//    public String bookingId() {
+//        bookingId = driver.findElement(By.cssSelector(savedRow)).getAttribute("id");
+//        return bookingId;
+//    }
+
+//    public String deleteBtn() {
+//        deleteBtn = String.format("input[onclick='deleteBooking(%s)']", bookingId);
+//        return  deleteBtn;
+//    }
+
+//    public void clickingDelete() {
+//        driver.findElement(By.cssSelector(deleteBtn)).click();
+//    }
+
+//        public void deleteABooking() {
+//        bookingNo();
+//        savedRow();
+//        waitForSavedRow();
+//        bookingId();
+//        deleteBtn();
+//        clickingDelete();
+//    }
+
+//    public void verifyADeletedBooking() {
+//
+////        Assert.assertTrue(hooks.findElement(By.cssSelector(this.deleteBtn)).isDisplayed());
+//    }
+
+    public void removeLegacyBookings() {
+        int noOfSavedBookings = noOfSavedBookings();
+        while (noOfSavedBookings!=2) {
+            deleteLastBooking();
+            noOfSavedBookings--;
+            System.out.println(noOfSavedBookings);
+        }
     }
 
 }
