@@ -1,6 +1,5 @@
 package steps;
 
-
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -18,12 +17,14 @@ public class hotelBookingFormPage {
     public static int bookingNo;
 
     @Before
-    public void startBrowser() {
+    public void startBrowser() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         driver.get("http://hotel-test.equalexperts.io/");
-        hotelBookingForm hbf = new hotelBookingForm(driver);
-        hbf.removeLegacyBookings();
+//        hotelBookingForm hbf = new hotelBookingForm(driver);
+//        hbf.waitForSaveButton();
+//        hbf.removeLegacyBookings();
     }
 
     @After
@@ -37,43 +38,39 @@ public class hotelBookingFormPage {
 //        driver.get("http://hotel-test.equalexperts.io/");
 //    }
 
-//    @When("enter all valid information")
-//    public void enterAllValidInformation() {
-//        hotelBookingForm hbf = new hotelBookingForm(driver);
-//        hbf.enterBookingInformation();
-//    }
+    @When("enter all valid information")
+    public void enterAllValidInformation() {
+        hotelBookingForm hbf = new hotelBookingForm(driver);
+        hbf.enterBookingInformation();
+    }
 
-//    @And("save the hotel booking")
-//    public void saveTheHotelBooking() {
-//        hotelBookingForm hbf = new hotelBookingForm(driver);
-//        hbf.saveHotelBooking();
-//    }
+    @And("save the hotel booking")
+    public void saveTheHotelBooking() throws InterruptedException {
+        hotelBookingForm hbf = new hotelBookingForm(driver);
+        hbf.saveHotelBooking();
+    }
 
-//    @Then("the hotel booking will be saved")
-//    public void theHotelBookingWillBeSaved() {
-//        hotelBookingForm hbf = new hotelBookingForm(driver);
-//        hbf.savedBooking();
-//    }
+    @Then("the hotel booking will be saved")
+    public void theHotelBookingWillBeSaved() {
+        hotelBookingForm hbf = new hotelBookingForm(driver);
+        hbf.assertNewSavedBooking();
+    }
 
-//    @Given("I have a hotel booking")
-//    public int iHaveAHotelBooking() {
-//        hotelBookingForm hbf = new hotelBookingForm(driver);
-//        hbf.enterBookingInformation();
-//        hbf.saveHotelBooking();
-//        int bookingNo = hbf.bookingNo();
-//        System.out.println(bookingNo);
-//        return bookingNo;
-//    }
+    @Given("I have a hotel booking")
+    public void iHaveAHotelBooking() {
+        hotelBookingForm hbf = new hotelBookingForm(driver);
+        hbf.enterBookingInformation();
+    }
 
-//    @When("I delete the hotel booking")
-//    public void iDeleteTheHotelBooking() {
-//        hotelBookingForm hbf = new hotelBookingForm(driver);
-//        hbf.deleteABooking();
-//    }
+    @When("I delete the hotel booking")
+    public void iDeleteTheHotelBooking() {
+        hotelBookingForm hbf = new hotelBookingForm(driver);
+        hbf.deleteLastSavedHotelBooking();
+    }
 
-//    @Then("then booking cannot be seen")
-//    public void thenBookingCannotBeSeen() {
-//        hotelBookingForm hbf = new hotelBookingForm(driver);
-//        hbf.verifyADeletedBooking();
-//    }
+    @Then("then booking cannot be seen")
+    public void thenBookingCannotBeSeen() {
+        hotelBookingForm hbf = new hotelBookingForm(driver);
+        hbf.assertDeletedBooking();
+    }
 }
