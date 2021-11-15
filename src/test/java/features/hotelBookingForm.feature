@@ -1,8 +1,5 @@
 Feature: Hotel Booking Form
-
-#  Background:
-#    Given I navigate to the hotel booking form page
-
+  
   Scenario: User is able to make a hotel booking
     When enter all valid information
     And save the hotel booking

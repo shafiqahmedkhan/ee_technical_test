@@ -11,6 +11,7 @@ import java.util.List;
 public class hotelBookingForm {
 
     public WebDriver driver;
+    public static String bookingId;
 
     public hotelBookingForm(WebDriver driver) {
         this.driver = driver;
@@ -80,7 +81,6 @@ public class hotelBookingForm {
         //All the rows
         List<WebElement> rows = driver.findElements(row);
         int noOfRows = rows.size();
-        System.out.println(noOfRows);
         //select save
         driver.findElement(save).click();
         //wait for the delete button
@@ -120,9 +120,6 @@ public class hotelBookingForm {
         return noOfSavedBookings;
     }
 
-    public void assertDeletedBooking() {
-//        Assert.assertTrue(driver.findElement(By.cssSelector(this.deleteBtn)).isDisplayed());
-    }
 
     public void assertNewSavedBooking() {
         WebElement booking = driver.findElement(lastSavedBooking);
@@ -133,11 +130,24 @@ public class hotelBookingForm {
         Assert.assertEquals(outerHtml.contains("div class=\"row\" id=\""), true);
     }
 
-    public void deleteLastSavedHotelBooking() {
+    public void deleteLastSavedHotelBooking() throws InterruptedException {
         WebElement booking = driver.findElement(lastSavedBooking);
-        String bookingId = booking.getAttribute("id");
+        this.bookingId = bookingId;
+        bookingId = booking.getAttribute("id");
+        System.out.println(bookingId);
         String deleteBtn = String.format("input[onclick='deleteBooking(%s)']", bookingId);
         driver.findElement(By.cssSelector(deleteBtn)).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.not(
+                ExpectedConditions.elementToBeClickable(By.cssSelector(deleteBtn))));
+    }
+
+    public void assertDeletedBooking() throws InterruptedException {
+        String bookingId = hotelBookingForm.bookingId;
+        System.out.println(bookingId);
+        List<WebElement> deleteBtn = driver.findElements(By.cssSelector("input[onclick='deleteBooking(" + bookingId + ")']"));
+        System.out.println(deleteBtn.size());
+        Assert.assertEquals(0, deleteBtn.size());
     }
 
 }

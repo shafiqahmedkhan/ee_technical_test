@@ -60,16 +60,17 @@ public class hotelBookingFormPage {
     public void iHaveAHotelBooking() {
         hotelBookingForm hbf = new hotelBookingForm(driver);
         hbf.enterBookingInformation();
+        hbf.saveHotelBooking();
     }
 
     @When("I delete the hotel booking")
-    public void iDeleteTheHotelBooking() {
+    public void iDeleteTheHotelBooking() throws InterruptedException {
         hotelBookingForm hbf = new hotelBookingForm(driver);
         hbf.deleteLastSavedHotelBooking();
     }
 
     @Then("then booking cannot be seen")
-    public void thenBookingCannotBeSeen() {
+    public void thenBookingCannotBeSeen() throws InterruptedException {
         hotelBookingForm hbf = new hotelBookingForm(driver);
         hbf.assertDeletedBooking();
     }
