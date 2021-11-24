@@ -10,6 +10,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.hotelBookingForm;
+import resources.getPropertyValues;
+
+import java.io.IOException;
 
 public class hotelBookingFormPage {
 
@@ -17,11 +20,13 @@ public class hotelBookingFormPage {
     public static int bookingNo;
 
     @Before
-    public void startBrowser() throws InterruptedException {
+    public void startBrowser() throws InterruptedException, IOException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("http://hotel-test.equalexperts.io/");
+        getPropertyValues gpv = new getPropertyValues();
+        gpv.fileInputStream("HotelBookingForm.properties");
+        driver.get(gpv.getUrl());
     }
 
     @After

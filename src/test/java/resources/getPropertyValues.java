@@ -8,14 +8,18 @@ public class getPropertyValues  {
 
     Properties prop = new Properties();
 
-    public void fileInputStream() throws IOException {
-        FileInputStream fis = new FileInputStream("HotelBookingForm.properties");
+    public void fileInputStream(String formPage) throws IOException {
+        String currentWorkingDir = System.getProperty("user.dir");
+        FileInputStream fis = new FileInputStream(currentWorkingDir+"/src/test/java/resources/"+formPage);
         prop.load(fis);
     }
 
-    public void getUrl() {
-        prop.getProperty("url");
+    public String getUrl() {
+        String url = prop.getProperty("url");
+        return url;
     }
+
+
 
 }
 
