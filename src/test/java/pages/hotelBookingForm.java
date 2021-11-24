@@ -5,6 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.*;
+import resources.getPropertyValues;
+
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
@@ -43,9 +46,9 @@ public class hotelBookingForm {
         driver.findElement(price).sendKeys(cost);
     }
 
-    public void depositStatus (int index) {
+    public void depositStatus (String status) {
         Select se = new Select(driver.findElement(deposit));
-        se.selectByIndex(index);
+        se.selectByVisibleText(status);
     }
 
     public void selectCheckInDatePicker() {
@@ -94,15 +97,17 @@ public class hotelBookingForm {
         }
     }
 
-    public void enterBookingInformation() {
-        enterFirstName("first");
-        enterLastName("lastname");
-        enterPrice("12");
-        depositStatus(1);
+    public void enterBookingInformation() throws IOException {
+        getPropertyValues gpv = new getPropertyValues();
+        gpv.fileInputStream("HotelBookingForm.properties");
+        enterFirstName(gpv.getFirstName());
+        enterLastName(gpv.getLastName());
+        enterPrice(gpv.getPrice());
+        depositStatus(gpv.getDepositStatus());
         selectCheckInDatePicker();
-        selectDate("1", "June", "2022");
+        selectDate(gpv.getCheckInDate(), gpv.getCheckInMonth(), gpv.getCheckInYear());
         selectCheckOutDatePicker();
-        selectDate("15", "June", "2022");
+        selectDate(gpv.getCheckOutDate(), gpv.getCheckOutMonth(), gpv.getCheckOutYear());
     }
 
     public void assertNewSavedBooking() {

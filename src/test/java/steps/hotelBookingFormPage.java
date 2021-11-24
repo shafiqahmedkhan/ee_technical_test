@@ -36,14 +36,14 @@ public class hotelBookingFormPage {
     }
 
     @Given("I have a hotel booking")
-    public void iHaveAHotelBooking() {
+    public void iHaveAHotelBooking() throws IOException {
         hotelBookingForm hbf = new hotelBookingForm(driver);
         hbf.enterBookingInformation();
         hbf.saveHotelBooking();
     }
 
     @When("I enter all valid information")
-    public void iEnterAllValidInformation() {
+    public void iEnterAllValidInformation() throws IOException {
         hotelBookingForm hbf = new hotelBookingForm(driver);
         hbf.enterBookingInformation();
     }
