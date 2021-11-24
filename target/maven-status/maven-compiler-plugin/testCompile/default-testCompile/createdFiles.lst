@@ -1,4 +1,3 @@
-resources/hooks.class
 RunCukesTest.class
 steps/hotelBookingFormPage.class
 resources/getPropertyValues.class
