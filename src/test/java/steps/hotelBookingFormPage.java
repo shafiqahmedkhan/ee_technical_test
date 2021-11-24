@@ -22,38 +22,12 @@ public class hotelBookingFormPage {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://hotel-test.equalexperts.io/");
-//        hotelBookingForm hbf = new hotelBookingForm(driver);
-//        hbf.waitForSaveButton();
-//        hbf.removeLegacyBookings();
     }
 
     @After
     public void closeBrowser() {
         driver.close();
         driver.quit();
-    }
-
-//    @Given("I navigate to the hotel booking form page")
-//    public void iNavigateToTheHotelBookingFormPage() {
-//        driver.get("http://hotel-test.equalexperts.io/");
-//    }
-
-    @When("enter all valid information")
-    public void enterAllValidInformation() {
-        hotelBookingForm hbf = new hotelBookingForm(driver);
-        hbf.enterBookingInformation();
-    }
-
-    @And("save the hotel booking")
-    public void saveTheHotelBooking() throws InterruptedException {
-        hotelBookingForm hbf = new hotelBookingForm(driver);
-        hbf.saveHotelBooking();
-    }
-
-    @Then("the hotel booking will be saved")
-    public void theHotelBookingWillBeSaved() {
-        hotelBookingForm hbf = new hotelBookingForm(driver);
-        hbf.assertNewSavedBooking();
     }
 
     @Given("I have a hotel booking")
@@ -63,15 +37,30 @@ public class hotelBookingFormPage {
         hbf.saveHotelBooking();
     }
 
-    @When("I delete the hotel booking")
-    public void iDeleteTheHotelBooking() throws InterruptedException {
+    @When("I enter all valid information")
+    public void iEnterAllValidInformation() {
         hotelBookingForm hbf = new hotelBookingForm(driver);
-        hbf.deleteLastSavedHotelBooking();
+        hbf.enterBookingInformation();
     }
 
-    @Then("then booking cannot be seen")
-    public void thenBookingCannotBeSeen() throws InterruptedException {
+    @Then("the hotel booking will be {string}")
+    public void theHotelBookingWillBeSaved(String bookingStatus) {
         hotelBookingForm hbf = new hotelBookingForm(driver);
-        hbf.assertDeletedBooking();
+        if (bookingStatus.equals("saved")) {
+            hbf.assertNewSavedBooking();
+        } else {
+            hbf.assertDeletedBooking();
+        }
     }
+
+    @And("I {string} the hotel booking")
+    public void iSaveTheHotelBooking(String status) {
+        hotelBookingForm hbf = new hotelBookingForm(driver);
+        if (status.equals("save")) {
+            hbf.saveHotelBooking();
+        } else {
+            hbf.deleteLastSavedHotelBooking();
+        }
+    }
+
 }
